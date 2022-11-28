@@ -56,7 +56,7 @@ CREATE TABLE contacts (
     created_by int(11) NOT NULL,
     created_at datetime(6) NOT NULL,
     updated_at datetime(6) NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=0;
+) ENGINE=MyISAM AUTO_INCREMENT=1;
 
 --
 -- Table structure for table notes
@@ -71,4 +71,4 @@ CREATE TABLE notes (
     email varchar(35) NOT NULL,
     role varchar(10) NOT NULL,
     created_at datetime(6) NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=0;
+) ENGINE=MyISAM AUTO_INCREMENT=1;
