@@ -9,6 +9,7 @@
     <title>Dolphin CRM</title>
 </head>
 <body class = "container">
+    <?php require "adminChecker.php"?>
     <header>
         <div>
             <img src="dolphinCrmImage.png" alt="Cartoon Dolphin Logo"><!--Logo added -->
