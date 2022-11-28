@@ -31,7 +31,7 @@ CREATE TABLE users(
     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     firstname varchar(20) NOT NULL,
     lastname varchar(20) NOT NULL,
-    password varchar(8) NOT NULL,
+    password varchar(60) NOT NULL,
     email varchar(35) NOT NULL,
     role varchar(10) NOT NULL,
     created_at datetime(6) NOT NULL
@@ -67,7 +67,7 @@ CREATE TABLE notes (
     id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     contact_id int(11) NOT NULL,
     comment varchar(20) NOT NULL,
-    password varchar(8) NOT NULL,
+    password varchar(60) NOT NULL,
     email varchar(35) NOT NULL,
     role varchar(10) NOT NULL,
     created_at datetime(6) NOT NULL
