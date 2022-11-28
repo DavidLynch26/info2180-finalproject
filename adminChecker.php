@@ -1,10 +1,5 @@
 <?php 
-    $host = 'localhost';
-    $email = 'admin@project2.com';
-    $password = 'password123';
-    $dbname = 'dolphin_crm';
-    
-    $conn = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $email, $password);
+    include "setConnection.php";
 
     $stmt = $conn->query("SELECT * FROM users");
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
