@@ -1,17 +1,54 @@
 window.onload = function(){
-
-    var url = "userLogin.php"; //Used for php file
-    var params = ""; //Used for php parameters in file
+    var url; //Used for php file
+    var method;
+    var result;
+    var params; //Used for php parameters in file
     var xhttp = new XMLHttpRequest();
-
-    xhttp.open("POST", "userLogin.php", true);
-    xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    xhttp.onreadystatechange = function(){
-        if(this.readyState == 4 && this.status == 200){
-            document.getElementById("gridBox").innerHTML = this.responseText;
-            console.log(this.responseText);
+    var workSpace = document.getElementById("gridBox");
+    var loginButton;
+    
+    function init(){
+        url = "userLogin.php";
+        method = "POST";
+        params = "";
+        result = document.getElementById("gridBox");
+        xhttp.open(method, url, false);
+        xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xhttp.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status == 200){
+                result.innerHTML = this.responseText;
+            }
         }
+        xhttp.send(params);
     }
-    xhttp.send("");
-    // xhttp.send("username=admin@project2.com&password=password123"); //Change to recieved var from form
+    init();
+
+    loginButton = document.getElementById("loginButton").addEventListener('click', function(event){
+        event.preventDefault();
+        var username = document.getElementById("username").value.trim().replace(/(<([^>]+)>)/gi, "");
+        var password = document.getElementById("password").value.trim().replace(/(<([^>]+)>)/gi, "");
+        if(username !== "" && password !== ""){
+            url = "verifyUser.php";
+            method = "POST";
+            params = "username=" +username+ "&password="+password;
+            xhttp.open(method, url);
+            xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            xhttp.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200){
+                    result = this.responseText;
+                    // loadPage();
+                }
+            }
+            xhttp.send(params);
+        }
+    });
+}
+
+function loadPage(){
+    workSpace.innerHTML = "";
+
+    var leftSide = document.createElement("section");
+    leftSide.setAttribute("id", "sideBar");
+    var rightSide = document.createElement("section");
+    rightSide.setAttribute("id", "loader");
 }

@@ -17,12 +17,6 @@
         </div>
     </header>
     <div id = "gridBox">
-        <section id = "menu">
-            <!--Menu option are printed here after the login has been successful-->
-        </section>
-        <section id = "loader">c
-            <!--Relevant data associated with the menu button pressed is displayed here -->
-        </section>
     </div>
     <!--Footer containing date using php date function -->
     <?php include "footer.php";?>
