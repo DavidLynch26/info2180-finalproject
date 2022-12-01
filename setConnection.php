@@ -1,5 +1,5 @@
 <?php
-$host = 'localhost';
+    $host = 'localhost';
     $email = 'admin@project2.com';
     $password = 'password123';
     $dbname = 'dolphin_crm';
