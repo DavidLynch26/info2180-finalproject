@@ -22,3 +22,7 @@
     <?php include "footer.php";?>
 </body>
 </html>
+
+<section id  = "sideBar" >
+    
+</section>
