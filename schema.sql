@@ -29,6 +29,7 @@ USE dolphin_crm;
 DROP TABLE IF EXISTS users;
 CREATE TABLE users(
     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    title varchar(3) NOT NULL,
     firstname varchar(20) NOT NULL,
     lastname varchar(20) NOT NULL,
     password varchar(60) NOT NULL,
