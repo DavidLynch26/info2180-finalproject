@@ -8,7 +8,8 @@ window.onload = function(){
     var workSpace;
     var xhttp = new XMLHttpRequest();
     var workSpace = document.getElementById("gridBox");
-    
+    var loginButton;
+
     function init(){
         url = "userLogin.php";
         method = "POST";
