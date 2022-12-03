@@ -59,9 +59,9 @@ window.onload = function(){
 
 function loadPage(workSpace, xhttp, url, method, params, result, init, role){
     if(role == 0){
-        url = "newUser.php";
-    }else if(role == 1){
         url = "dashboard.php";
+    }else if(role == 1){
+        url = "userList.php";
     }
     method = "POST";
     params = "";
