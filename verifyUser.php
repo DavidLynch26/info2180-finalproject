@@ -12,13 +12,17 @@
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
         foreach($results as $result):
             if($result['email'] == $userName and password_verify($passWord, $result['password'])): 
-                $login = true;?>
-                <p>Successfull Login</p>
-                <?php break;
+                $login = true;
+                if($result['role'] == "Member"){
+                    echo json_encode([1, 0]);
+                }elseif($result['role'] == "Admin"){
+                    echo json_encode([1, 1]);
+                }
+                break;
             endif; 
-        endforeach; 
-        if(!$login): ?>
-            <p>Unsuccessful Login</p>
-        <?php endif;
-    endif;
+        endforeach;
+        if (!$login):
+            echo json_encode([0,0]);
+            endif;
+        endif;
     $conn = null;?>

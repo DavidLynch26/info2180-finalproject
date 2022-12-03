@@ -7,7 +7,7 @@ window.onload = function(){
     var params; //Used for php parameters in file
     var workSpace;
     var xhttp = new XMLHttpRequest();
-    var loginButton;
+    var workSpace = document.getElementById("gridBox");
     
     function init(){
         url = "userLogin.php";
@@ -33,8 +33,14 @@ window.onload = function(){
                             if(this.readyState == 4 && this.status == 200){
                                 result = this.responseText.replace(/(<([^>]+)>)/gi, "").trim();
                                 console.log(result);
-                                if(result == "Successfull Login"){
-                                    loadPage(workSpace, xhttp, url, method, params, result, init);
+                                if(result[1] == 1){
+                                    if(result[3] == 0){
+                                        console.log("member");
+                                        loadPage(workSpace, xhttp, url, method, params, result, init, result[3]);
+                                    }else if(result[3] == 1){
+                                        console.log("admin");
+                                        loadPage(workSpace, xhttp, url, method, params, result, init, result[3]);
+                                    }
                                 }else{
                                     // Add unsuccessful login prompt
                                 }
@@ -50,19 +56,12 @@ window.onload = function(){
     init();
 }
 
-function loadPage(workSpace, xhttp, url, method, params, result, init){
-    workSpace = document.getElementById("gridBox");
-    workSpace.innerHTML = "";
-
-    var leftSide = document.createElement("section");
-    leftSide.setAttribute("id", "sideBar");
-    var rightSide = document.createElement("section");
-    rightSide.setAttribute("id", "loader");
-
-    workSpace.appendChild(leftSide);
-    workSpace.appendChild(rightSide);
-
-    url = "sideBar.php";
+function loadPage(workSpace, xhttp, url, method, params, result, init, role){
+    if(role == 0){
+        url = "newUser.php";
+    }else if(role == 1){
+        url = "dashboard.php";
+    }
     method = "POST";
     params = "";
     xhttp.open(method, url, false);
@@ -70,7 +69,7 @@ function loadPage(workSpace, xhttp, url, method, params, result, init){
     xhttp.onreadystatechange = function(){
         if(this.readyState == 4 && this.status == 200){
             result = this.responseText;
-            leftSide.innerHTML = result;
+            workSpace.innerHTML = result;
         }
     }
     xhttp.send(params);
@@ -79,9 +78,9 @@ function loadPage(workSpace, xhttp, url, method, params, result, init){
     links.forEach((link) =>{
         link.addEventListener('click', function(event){
             event.preventDefault();
-            if(this.textContent == "HOme"){
+            if(this.textContent == "Home"){
                 
-            }else if(this.textContent == "NEw Contact"){
+            }else if(this.textContent == "New Contact"){
         
             }else if(this.textContent == "Users"){
         
