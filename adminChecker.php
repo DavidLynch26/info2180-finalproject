@@ -9,8 +9,8 @@
 
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $conn->exec("ALTER TABLE users AUTO_INCREMENT = 1");
-        $admin = "INSERT INTO users (firstname, lastname, password, email, role, created_at)
-                    VALUES ('admin', 'admin', '$hashedPass', 'admin@project2.com', 'Admin', NOW())";
+        $admin = "INSERT INTO users (title, firstname, lastname, password, email, role, created_at)
+                    VALUES ('Mr.', 'admin', 'admin', '$hashedPass', 'admin@project2.com', 'Admin', NOW())";
         $conn->exec($admin);
     }
     $conn = null;

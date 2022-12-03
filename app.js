@@ -8,7 +8,8 @@ window.onload = function(){
     var workSpace;
     var xhttp = new XMLHttpRequest();
     var workSpace = document.getElementById("gridBox");
-    
+    var loginButton;
+
     function init(){
         url = "userLogin.php";
         method = "POST";
@@ -58,9 +59,9 @@ window.onload = function(){
 
 function loadPage(workSpace, xhttp, url, method, params, result, init, role){
     if(role == 0){
-        url = "newUser.php";
-    }else if(role == 1){
         url = "dashboard.php";
+    }else if(role == 1){
+        url = "userList.php";
     }
     method = "POST";
     params = "";
