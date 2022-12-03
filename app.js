@@ -79,9 +79,9 @@ function loadPage(workSpace, xhttp, url, method, params, result, init){
     links.forEach((link) =>{
         link.addEventListener('click', function(event){
             event.preventDefault();
-            if(this.textContent == "HOme"){
+            if(this.textContent == "Home"){
                 
-            }else if(this.textContent == "NEw Contact"){
+            }else if(this.textContent == "New Contact"){
         
             }else if(this.textContent == "Users"){
         
