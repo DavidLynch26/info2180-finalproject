@@ -79,6 +79,7 @@ function loadPage(workSpace, xhttp, url, method, params, result, init, role){
                 var lastName = document.querySelector("form [for='lastName'] input").value
                 var email = document.querySelector("form [for='email'] input").value;
                 var password = document.querySelector("form [for='password'] input").value;
+                var role = document.getElementById("roleSelector").value;
 
                 reg = /^[a-zA-Z]{1,}$/;
                 if(!firstName.match(reg)){
@@ -103,7 +104,7 @@ function loadPage(workSpace, xhttp, url, method, params, result, init, role){
                 
                 if(pass == true){
                     url = "newUser.php";
-                    params = "";
+                    params = "firstname=" +firstName+ "lastname=" +lastName+ "email=" +email+ "password=" +password+ "role=";
                     xhttp.open(method, url, false);
                     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
                     xhttp.onreadystatechange = function(){
