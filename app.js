@@ -76,10 +76,11 @@ function loadPage(workSpace, xhttp, url, method, params, result, init, role){
                 var reg;
                 var pass = true;
                 var firstName = document.querySelector("form [for='firstName'] input").value;
-                var lastName = document.querySelector("form [for='lastName'] input").value
+                var lastName = document.querySelector("form [for='lastName'] input").value;
                 var email = document.querySelector("form [for='email'] input").value;
                 var password = document.querySelector("form [for='password'] input").value;
                 var role = document.getElementById("roleSelector").value;
+                var title = document.getElementById("titleSelector").value;
 
                 reg = /^[a-zA-Z]{1,}$/;
                 if(!firstName.match(reg)){
@@ -104,19 +105,30 @@ function loadPage(workSpace, xhttp, url, method, params, result, init, role){
                 
                 if(pass == true){
                     url = "newUser.php";
-                    params = "firstname=" +firstName+ "lastname=" +lastName+ "email=" +email+ "password=" +password+ "role=";
+                    params = "firstname=" +firstName+ "&lastname=" +lastName+ "&email=" +email+ "&password=" +password+ "&role=" +role+ "&title=" +title;
                     xhttp.open(method, url, false);
                     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
                     xhttp.onreadystatechange = function(){
                         if(this.readyState == 4 && this.status == 200){
-                            result = this.responseText;
-                            console.log(result);
+                            console.log(this.responseText);
+                            loadPage(workSpace, xhttp, "userList.php", method, params, result, init, role);
                         }
                     }
                     xhttp.send(params);                   
                 }
             });
         });
+    }else{
+        params = "type=All Contacts";
+        xhttp.open(method, url, false);
+        xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xhttp.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status == 200){
+                result = this.responseText;
+                workSpace.innerHTML = result;
+            }
+        }
+        xhttp.send(params); 
     }
 
     var links = document.querySelectorAll("a");

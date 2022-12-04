@@ -1,17 +1,16 @@
 <?php
     if(isset($_POST['type'])){
-        $type = $_POST['type'];
-        $searchVal = $_GET['type'];
-        $country = filter_var($searchVal, FILTER_SANITIZE_STRING);
-        $queryString = "SELECT * FROM contacts role LIKE '%$type%'";
-
         include "setConnection.php";
+
+        $type = filter_input(INPUT_POST, 'type', FILTER_SANITIZE_STRING);
+        $queryString = "SELECT * FROM contacts WHERE type LIKE '%$type%'";
 
         $grab = $conn->query($queryString);
         $dash = $grab->fetchAll(PDO::FETCH_ASSOC);
 
-    }
-?>
+    }?>
+<h1 id = "dashboard">Dashboard</h1>
+<button id = "newContactButton" type = "button">New Contact</button>
 
 <div class="tab">
     <h3>&#xF3CA; Filter By</h3>
@@ -28,17 +27,15 @@
         <th>Company</th>
         <th>Type</th>
     </tr>
-    <?php foreach ($dash as $row)?>
+
+    <?php foreach ($dash as $row):?>
     <tr>
-        <?php $name = $row['title'].['firstname'].['lastname']?>
+        <?php $name = $row['title'].$row['firstname'].$row['lastname']?>
         
         <td><?= $name;?></td>
         <td><?= $row['email']; ?></td>
         <td><?= $row['company']; ?></td>
         <td><?= $row['type']; ?><a href= ''>View</a></td>
     </tr>
-</table>
-
-<table>
-
+    <?php endforeach ?>
 </table>

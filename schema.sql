@@ -29,6 +29,7 @@ USE dolphin_crm;
 DROP TABLE IF EXISTS users;
 CREATE TABLE users(
     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    title varchar(5) NOT NULL,
     firstname varchar(20) NOT NULL,
     lastname varchar(20) NOT NULL,
     password varchar(60) NOT NULL,
@@ -44,7 +45,7 @@ CREATE TABLE users(
 DROP TABLE IF EXISTS contacts;
 CREATE TABLE contacts (
     id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    title varchar(4) NOT NULL,
+    title varchar(5) NOT NULL,
     firstname varchar(20) NOT NULL,
     lastname varchar(20) NOT NULL,
     email varchar(35) NOT NULL,
