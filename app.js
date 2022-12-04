@@ -22,7 +22,7 @@ window.onload = function(){
                     var username = document.getElementById("username").value.replace(/(<([^>]+)>)/gi, "").trim();
                     var password = document.getElementById("password").value.replace(/(<([^>]+)>)/gi, "").trim();
                     if(username !== "" && password !== ""){
-                        url = "verifyLogin.php";
+                        url = "userLogin.php";
                         params = "username=" +username+ "&password="+password;
                         xhttp.open(method, url, false);
                         xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
