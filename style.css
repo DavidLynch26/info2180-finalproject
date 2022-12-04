@@ -39,6 +39,10 @@ header div img{
     height: 10px;
 }
 
+footer{
+    padding-top: 50px;
+}
+
 .container{
     width: 100%;
     margin: 0 auto;
