@@ -2,18 +2,15 @@
 
 window.onload = function(){
     var url; //Used for php file
-    var method;
+    var method = "POST";
     var result;
     var params; //Used for php parameters in file
-    var workSpace;
     var xhttp = new XMLHttpRequest();
     var workSpace = document.getElementById("gridBox");
     var loginButton;
 
     function init(){
-        url = "userLogin.php";
-        method = "POST";
-        params = "";
+        url = "userLoginForm.php";
         workSpace = document.getElementById("gridBox");
         xhttp.open(method, url, false);
         xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
@@ -25,21 +22,17 @@ window.onload = function(){
                     var username = document.getElementById("username").value.replace(/(<([^>]+)>)/gi, "").trim();
                     var password = document.getElementById("password").value.replace(/(<([^>]+)>)/gi, "").trim();
                     if(username !== "" && password !== ""){
-                        url = "verifyUser.php";
-                        method = "POST";
+                        url = "verifyLogin.php";
                         params = "username=" +username+ "&password="+password;
                         xhttp.open(method, url, false);
                         xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
                         xhttp.onreadystatechange = function(){
                             if(this.readyState == 4 && this.status == 200){
                                 result = this.responseText.replace(/(<([^>]+)>)/gi, "").trim();
-                                console.log(result);
                                 if(result[1] == 1){
                                     if(result[3] == 0){
-                                        console.log("member");
                                         loadPage(workSpace, xhttp, url, method, params, result, init, result[3]);
                                     }else if(result[3] == 1){
-                                        console.log("admin");
                                         loadPage(workSpace, xhttp, url, method, params, result, init, result[3]);
                                     }
                                 }else{
@@ -63,8 +56,8 @@ function loadPage(workSpace, xhttp, url, method, params, result, init, role){
     }else if(role == 1){
         url = "userList.php";
     }
-    method = "POST";
     params = "";
+
     xhttp.open(method, url, false);
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhttp.onreadystatechange = function(){
@@ -75,16 +68,60 @@ function loadPage(workSpace, xhttp, url, method, params, result, init, role){
     }
     xhttp.send(params);
 
+    if(role == 1){
+        document.getElementById("newUserButton").addEventListener('click', function(){
+            loadSub(workSpace, xhttp, url, method, params, result, "newUserForm");
+            document.getElementById("saveButton").addEventListener('click', function(){
+
+                var reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+                var pass = true;
+                if(!document.querySelector("form [for='email'] input").value.match(reg)){
+                    console.log("email");
+                    pass = false;
+                }
+                reg = /^[a-zA-Z0-9_.-]{8,}$/;
+                if(!document.querySelector("form [for='password'] input").value.match(reg)){
+                    console.log("password");
+                    pass = false;
+                }
+                reg = /^[a-zA-Z]{1,}$/;
+                if(!document.querySelector("form [for='firstName'] input").value.match(reg)){
+                    console.log("firstName");
+                    pass = false;
+
+                }
+                if(!document.querySelector("form [for='lastName'] input").value.match(reg)){
+                    console.log("lastName");
+                    pass = false;
+                }
+
+                if(pass == true){
+                    url = page + ".php";
+                    params = "";
+                    xhttp.open(method, url, false);
+                    xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+                    xhttp.onreadystatechange = function(){
+                        if(this.readyState == 4 && this.status == 200){
+                            result = this.responseText;
+                            workSpace.innerHTML = result;
+                        }
+                    }
+                    xhttp.send(params);                   
+                }
+            });
+        });
+    }
+
     var links = document.querySelectorAll("a");
     links.forEach((link) =>{
         link.addEventListener('click', function(event){
             event.preventDefault();
             if(this.textContent == "Home"){
-                
+                loadSub(workSpace, xhttp, url, method, params, result, "dashboard");
             }else if(this.textContent == "New Contact"){
-        
+                loadSub(workSpace, xhttp, url, method, params, result, "newContact");
             }else if(this.textContent == "Users"){
-        
+                loadSub(workSpace, xhttp, url, method, params, result, "userList");
             }else if(this.textContent == "Logout"){
                 if(confirm("Are You sure you would like to logout?")){
                     init();
@@ -94,4 +131,18 @@ function loadPage(workSpace, xhttp, url, method, params, result, init, role){
             }
         });
     });
+}
+
+function loadSub(workSpace, xhttp, url, method, params, result, page){
+    url = page + ".php";
+    params = "";
+    xhttp.open(method, url, false);
+    xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhttp.onreadystatechange = function(){
+        if(this.readyState == 4 && this.status == 200){
+            result = this.responseText;
+            workSpace.innerHTML = result;
+        }
+    }
+    xhttp.send(params);
 }
