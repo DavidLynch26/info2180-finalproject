@@ -73,37 +73,43 @@ function loadPage(workSpace, xhttp, url, method, params, result, init, role){
             loadSub(workSpace, xhttp, url, method, params, result, "newUserForm");
             document.getElementById("saveButton").addEventListener('click', function(){
 
-                var reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+                var reg;
                 var pass = true;
-                if(!document.querySelector("form [for='email'] input").value.match(reg)){
-                    console.log("email");
-                    pass = false;
-                }
-                reg = /^[a-zA-Z0-9_.-]{8,}$/;
-                if(!document.querySelector("form [for='password'] input").value.match(reg)){
-                    console.log("password");
-                    pass = false;
-                }
+                var firstName = document.querySelector("form [for='firstName'] input").value;
+                var lastName = document.querySelector("form [for='lastName'] input").value
+                var email = document.querySelector("form [for='email'] input").value;
+                var password = document.querySelector("form [for='password'] input").value;
+
                 reg = /^[a-zA-Z]{1,}$/;
-                if(!document.querySelector("form [for='firstName'] input").value.match(reg)){
+                if(!firstName.match(reg)){
                     console.log("firstName");
                     pass = false;
 
                 }
-                if(!document.querySelector("form [for='lastName'] input").value.match(reg)){
+                if(!lastName.match(reg)){
                     console.log("lastName");
                     pass = false;
                 }
-
+                reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+                if(!email.match(reg)){
+                    console.log("email");
+                    pass = false;
+                }
+                reg = /^[a-zA-Z0-9_.-]{8,}$/;
+                if(!password.match(reg)){
+                    console.log("password");
+                    pass = false;
+                }
+                
                 if(pass == true){
-                    url = page + ".php";
+                    url = "newUser.php";
                     params = "";
                     xhttp.open(method, url, false);
                     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
                     xhttp.onreadystatechange = function(){
                         if(this.readyState == 4 && this.status == 200){
                             result = this.responseText;
-                            workSpace.innerHTML = result;
+                            console.log(result);
                         }
                     }
                     xhttp.send(params);                   
