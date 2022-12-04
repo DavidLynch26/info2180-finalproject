@@ -1,6 +1,7 @@
 <?php
     if(isset($_POST['type'])){
         include "setConnection.php";
+        include "sideBar.php";
 
         $type = filter_input(INPUT_POST, 'type', FILTER_SANITIZE_STRING);
         $queryString = "SELECT * FROM contacts WHERE type LIKE '%$type%'";

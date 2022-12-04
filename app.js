@@ -20,11 +20,11 @@ window.onload = function(){
                 workSpace.innerHTML = this.responseText;
                 loginButton = document.getElementById("loginButton").addEventListener('click', function(event){
                     event.preventDefault();
-                    var username = document.getElementById("username").value.replace(/(<([^>]+)>)/gi, "").trim();
+                    var email = document.getElementById("email").value.replace(/(<([^>]+)>)/gi, "").trim();
                     var password = document.getElementById("password").value.replace(/(<([^>]+)>)/gi, "").trim();
-                    if(username !== "" && password !== ""){
+                    if(email !== "" && password !== ""){
                         url = "userLogin.php";
-                        params = "username=" +username+ "&password="+password;
+                        params = "email=" +email+ "&password="+password;
                         xhttp.open(method, url, false);
                         xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
                         xhttp.onreadystatechange = function(){
