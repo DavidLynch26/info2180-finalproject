@@ -10,6 +10,7 @@ window.onload = function(){
     var loginButton;
 
     function init(){
+        document.getElementById("text-muted").style.visibility = "visible";
         url = "userLoginForm.php";
         workSpace = document.getElementById("gridBox");
         xhttp.open(method, url, false);
@@ -51,6 +52,8 @@ window.onload = function(){
 }
 
 function loadPage(workSpace, xhttp, url, method, params, result, init, role){
+    document.getElementById("text-muted").style.visibility = "hidden";
+
     if(role == 0){
         url = "dashboard.php";
     }else if(role == 1){

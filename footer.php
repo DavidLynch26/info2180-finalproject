@@ -1,3 +1,3 @@
 <footer>
-<p class="text-muted">Copyright &copy; <?= date('Y'); ?> Dolphin CRM</p>
-</footer>
+<p id ="text-muted">Copyright &copy; <?= date('Y'); ?> Dolphin CRM</p>
+</footer> 

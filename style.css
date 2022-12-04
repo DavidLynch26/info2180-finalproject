@@ -13,8 +13,13 @@ header div img{
     width: 45px;
 }
 
-.text-muted{
+#text-muted{
     text-align: center;
+}
+
+#loginForm{
+    text-align: center;
+    font-weight: bold;
 }
 
 .container{
