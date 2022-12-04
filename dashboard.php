@@ -15,10 +15,10 @@
 
 <div class="tab">
     <h3>&#xF3CA; Filter By</h3>
-    <button class="tablinks" onclick="openContacts(event, 'All Contacts')">All Contacts</button>
-    <button class="tablinks" onclick="openContacts(event, 'Sales Lead')">Sales Lead</button>
-    <button class="tablinks" onclick="openContacts(event, 'Support')">Support</button>
-    <button class="tablinks" onclick="openContacts(event, 'Assigned to me')">Assigned to me</button>
+    <button class="tablinks" onclick="openContacts(event, 'dashboard.php','POST','All Contacts')">All Contacts</button>
+    <button class="tablinks" onclick="openContacts(event, 'dashboard.php','POST','Sales Lead')">Sales Lead</button>
+    <button class="tablinks" onclick="openContacts(event, 'dashboard.php','POST','Support')">Support</button>
+    <button class="tablinks" onclick="openContacts(event, 'dashboard.php','POST','Assigned to me')">Assigned to me</button>
 </div>
 
 <table>

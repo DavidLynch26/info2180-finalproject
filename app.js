@@ -153,7 +153,7 @@ function loadSub(workSpace, xhttp, url, method, params, result, page){
     xhttp.send(params);
 }
 
-function openContacts(){
+function openContacts(event, url, method, params){
     xhttp.open(method, url, false);
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhttp.onreadystatechange = function(){
@@ -162,5 +162,5 @@ function openContacts(){
             workSpace.innerHTML = result;
         }
     }
-    xhttp.send(params);
+    xhttp.send('type=' + params);
 }
