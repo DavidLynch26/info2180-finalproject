@@ -152,3 +152,15 @@ function loadSub(workSpace, xhttp, url, method, params, result, page){
     }
     xhttp.send(params);
 }
+
+function openContacts(){
+    xhttp.open(method, url, false);
+    xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhttp.onreadystatechange = function(){
+        if(this.readyState == 4 && this.status == 200){
+            result = this.responseText;
+            workSpace.innerHTML = result;
+        }
+    }
+    xhttp.send(params);
+}

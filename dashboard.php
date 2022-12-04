@@ -1,12 +1,25 @@
 <?php
-include "setConnection.php";
+    if(isset($_POST['type'])){
+        $type = $_POST['type'];
+        $searchVal = $_GET['type'];
+        $country = filter_var($searchVal, FILTER_SANITIZE_STRING);
+        $queryString = "SELECT * FROM contacts role LIKE '%$type%'";
 
-    $queryString = "SELECT * FROM contacts";
+        include "setConnection.php";
 
-$grab = $conn->query($queryString);
-$dash = $grab->fetchAll(PDO::FETCH_ASSOC);
+        $grab = $conn->query($queryString);
+        $dash = $grab->fetchAll(PDO::FETCH_ASSOC);
 
+    }
 ?>
+
+<div class="tab">
+    <h3>&#xF3CA; Filter By</h3>
+    <button class="tablinks" onclick="openContacts(event, 'All Contacts')">All Contacts</button>
+    <button class="tablinks" onclick="openContacts(event, 'Sales Lead')">Sales Lead</button>
+    <button class="tablinks" onclick="openContacts(event, 'Support')">Support</button>
+    <button class="tablinks" onclick="openContacts(event, 'Assigned to me')">Assigned to me</button>
+</div>
 
 <table>
     <tr>
@@ -24,4 +37,8 @@ $dash = $grab->fetchAll(PDO::FETCH_ASSOC);
         <td><?= $row['company']; ?></td>
         <td><?= $row['type']; ?><a href= ''>View</a></td>
     </tr>
+</table>
+
+<table>
+
 </table>
