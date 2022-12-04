@@ -25,4 +25,4 @@
             echo json_encode([0,0]);
             endif;
         endif;
-    $conn = null;?>
+        unset($conn);?>

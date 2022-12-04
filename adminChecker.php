@@ -13,5 +13,5 @@
                     VALUES ('Mr', 'admin', 'admin', '$hashedPass', 'admin@project2.com', 'Admin', NOW())";
         $conn->exec($admin);
     }
-    $conn = null;
+    unset($conn);
 ?>

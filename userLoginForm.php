@@ -1,3 +1,5 @@
+<?php include "generateSession.php";?>
+
 <h2>LOGIN</h2>
 <form id = "loginForm "action="verifyUser.php" method="POST">
     <label>User Name</label>
