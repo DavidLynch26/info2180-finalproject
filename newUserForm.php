@@ -1,7 +1,7 @@
 <h1>New User</h1>
 
 <form action="newUser.php">
-    <label for="firtsName"> First Name
+    <label for="firstName"> First Name
         <input type="text">
     </label>
     <label for="lastName"> Last Name
@@ -19,5 +19,5 @@
             <option value="admin">Admin</option>
         </select>
     </label>
-    <button type = "button">Save</button>
+    <button id = "saveButton" type = "button">Save</button>
 </form>
