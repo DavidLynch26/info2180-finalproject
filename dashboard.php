@@ -30,7 +30,7 @@
     </tr>
     <?php foreach ($dash as $row)?>
     <tr>
-        <?php $name = $row['title'].['firstname'].['lastname']?>
+        <?php $name = $row['title'].$row['firstname'].$row['lastname']?>
         
         <td><?= $name;?></td>
         <td><?= $row['email']; ?></td>
