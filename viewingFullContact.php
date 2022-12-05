@@ -22,3 +22,7 @@
         <td><?= $dash['type']; ?><a href= ''>View</a></td>
     </tr>
 </table>
+
+<?php
+    include "AddNote.php"
+?>
