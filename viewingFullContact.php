@@ -24,5 +24,5 @@
 </table>
 
 <?php
-    include "AddNote.php"
+    include "addNote.php";
 ?>
