@@ -1,5 +1,5 @@
 <?php
-    if(isset($_POST['type'])){
+    if(isset($_POST['type'])):
         include "setConnection.php";
         include "sideBar.php";
 
@@ -9,7 +9,7 @@
         $grab = $conn->query($queryString);
         $dash = $grab->fetchAll(PDO::FETCH_ASSOC);
 
-    }?>
+    ?>
 <h1 id = "dashboard">Dashboard</h1>
 <button id = "newContactButton" type = "button">New Contact</button>
 
@@ -40,3 +40,4 @@
     </tr>
     <?php endforeach ?>
 </table>
+<?php endif ?>

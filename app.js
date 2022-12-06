@@ -71,6 +71,27 @@ function loadPage(workSpace, xhttp, url, method, params, result, init, role){
     }
     xhttp.send(params);
 
+    var links = document.getElementsByTagName("a");
+    console.log(links);
+    // links.forEach((link) =>{
+    //     link.addEventListener('click', function(event){
+    //         event.preventDefault();
+    //         if(this.textContent == "Home"){
+    //             loadSub(workSpace, xhttp, url, method, params, result, "dashboard");
+    //         }else if(this.textContent == "New Contact"){
+    //             loadSub(workSpace, xhttp, url, method, params, result, "newContact");
+    //         }else if(this.textContent == "Users"){
+    //             loadSub(workSpace, xhttp, url, method, params, result, "userList");
+    //         }else if(this.textContent == "Logout"){
+    //             if(confirm("Are You sure you would like to logout?")){
+    //                 init();
+    //             }else{
+        
+    //             }
+    //         }
+    //     });
+    // });
+
     if(role == 1){
         document.getElementById("newUserButton").addEventListener('click', function(){
             loadSub(workSpace, xhttp, url, method, params, result, "newUserForm");
@@ -133,26 +154,6 @@ function loadPage(workSpace, xhttp, url, method, params, result, init, role){
         }
         xhttp.send(params); 
     }
-
-    var links = document.querySelectorAll("a");
-    links.forEach((link) =>{
-        link.addEventListener('click', function(event){
-            event.preventDefault();
-            if(this.textContent == "Home"){
-                loadSub(workSpace, xhttp, url, method, params, result, "dashboard");
-            }else if(this.textContent == "New Contact"){
-                loadSub(workSpace, xhttp, url, method, params, result, "newContact");
-            }else if(this.textContent == "Users"){
-                loadSub(workSpace, xhttp, url, method, params, result, "userList");
-            }else if(this.textContent == "Logout"){
-                if(confirm("Are You sure you would like to logout?")){
-                    init();
-                }else{
-        
-                }
-            }
-        });
-    });
 }
 
 function loadSub(workSpace, xhttp, url, method, params, result, page){
