@@ -10,6 +10,7 @@ window.onload = function(){
     var loginButton;
 
     function init(){
+        document.getElementById("text-muted").style.visibility = "visible";
         url = "userLoginForm.php";
         workSpace = document.getElementById("gridBox");
         xhttp.open(method, url, false);
@@ -19,11 +20,11 @@ window.onload = function(){
                 workSpace.innerHTML = this.responseText;
                 loginButton = document.getElementById("loginButton").addEventListener('click', function(event){
                     event.preventDefault();
-                    var username = document.getElementById("username").value.replace(/(<([^>]+)>)/gi, "").trim();
+                    var email = document.getElementById("email").value.replace(/(<([^>]+)>)/gi, "").trim();
                     var password = document.getElementById("password").value.replace(/(<([^>]+)>)/gi, "").trim();
-                    if(username !== "" && password !== ""){
+                    if(email !== "" && password !== ""){
                         url = "userLogin.php";
-                        params = "username=" +username+ "&password="+password;
+                        params = "email=" +email+ "&password="+password;
                         xhttp.open(method, url, false);
                         xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
                         xhttp.onreadystatechange = function(){
@@ -51,6 +52,8 @@ window.onload = function(){
 }
 
 function loadPage(workSpace, xhttp, url, method, params, result, init, role){
+    document.getElementById("text-muted").style.visibility = "hidden";
+
     if(role == 0){
         url = "dashboard.php";
     }else if(role == 1){
@@ -67,6 +70,27 @@ function loadPage(workSpace, xhttp, url, method, params, result, init, role){
         }
     }
     xhttp.send(params);
+
+    var links = document.getElementsByTagName("a");
+    console.log(links);
+    // links.forEach((link) =>{
+    //     link.addEventListener('click', function(event){
+    //         event.preventDefault();
+    //         if(this.textContent == "Home"){
+    //             loadSub(workSpace, xhttp, url, method, params, result, "dashboard");
+    //         }else if(this.textContent == "New Contact"){
+    //             loadSub(workSpace, xhttp, url, method, params, result, "newContact");
+    //         }else if(this.textContent == "Users"){
+    //             loadSub(workSpace, xhttp, url, method, params, result, "userList");
+    //         }else if(this.textContent == "Logout"){
+    //             if(confirm("Are You sure you would like to logout?")){
+    //                 init();
+    //             }else{
+        
+    //             }
+    //         }
+    //     });
+    // });
 
     if(role == 1){
         document.getElementById("newUserButton").addEventListener('click', function(){
@@ -130,26 +154,6 @@ function loadPage(workSpace, xhttp, url, method, params, result, init, role){
         }
         xhttp.send(params); 
     }
-
-    var links = document.querySelectorAll("a");
-    links.forEach((link) =>{
-        link.addEventListener('click', function(event){
-            event.preventDefault();
-            if(this.textContent == "Home"){
-                loadSub(workSpace, xhttp, url, method, params, result, "dashboard");
-            }else if(this.textContent == "New Contact"){
-                loadSub(workSpace, xhttp, url, method, params, result, "newContact");
-            }else if(this.textContent == "Users"){
-                loadSub(workSpace, xhttp, url, method, params, result, "userList");
-            }else if(this.textContent == "Logout"){
-                if(confirm("Are You sure you would like to logout?")){
-                    init();
-                }else{
-        
-                }
-            }
-        });
-    });
 }
 
 function loadSub(workSpace, xhttp, url, method, params, result, page){

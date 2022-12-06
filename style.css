@@ -13,8 +13,35 @@ header div img{
     width: 45px;
 }
 
-.text-muted{
+#text-muted{
     text-align: center;
+}
+
+#loginForm{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+}
+
+#loginForm button, #loginForm input{
+    width: 400px;
+    height: 30px;
+    border-radius: 5px;
+}
+
+#loginForm button{
+    background-color: blueviolet;
+    color: white;
+}
+
+#loginForm button img{
+    width: 10px;
+    height: 10px;
+}
+
+footer{
+    padding-top: 50px;
 }
 
 .container{

@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css" /><!--CSS file added -->
+    <link rel="stylesheet" href="style.css" type = "text/css"/><!--CSS file added -->
     <link rel="icon" href="http://localhost/info2180-finalproject/dolphinCrmImage.png"> <!--Browser icon added -->
     <script src="app.js"></script><!--Javasript file added -->
     <title>Dolphin CRM</title>
@@ -22,7 +22,3 @@
     <?php include "footer.php";?>
 </body>
 </html>
-
-<section id  = "sideBar" >
-    
-</section>

@@ -1,6 +1,7 @@
 <?php
-    if(isset($_POST['type'])){
+    if(isset($_POST['type'])):
         include "setConnection.php";
+        include "sideBar.php";
 
         $type = filter_input(INPUT_POST, 'type', FILTER_SANITIZE_STRING);
         $queryString = "SELECT * FROM contacts WHERE type LIKE '%$type%'";
@@ -8,7 +9,7 @@
         $grab = $conn->query($queryString);
         $dash = $grab->fetchAll(PDO::FETCH_ASSOC);
 
-    }?>
+    ?>
 <h1 id = "dashboard">Dashboard</h1>
 <button id = "newContactButton" type = "button">New Contact</button>
 
@@ -39,3 +40,4 @@
     </tr>
     <?php endforeach ?>
 </table>
+<?php endif ?>
