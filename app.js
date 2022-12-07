@@ -23,17 +23,10 @@ window.onload = function(){
                     event.preventDefault();
                     var username = document.getElementById("username").value.replace(/(<([^>]+)>)/gi, "").trim();
                     var password = document.getElementById("password").value.replace(/(<([^>]+)>)/gi, "").trim();
-<<<<<<< HEAD
-                    if(username !== "" && password !== ""){
-                        url = "verifyUser.php";
-                        method = "POST";
-                        params = "username=" +username+ "&password="+password;
-=======
                     var csfrToken = document.getElementById("csrfToken").value;
                     if(email !== "" && password !== ""){
                         url = "userLogin.php";
                         params = "email=" +email+ "&password=" +password+ "&csfrToken=" +csfrToken;
->>>>>>> 9ff5eff (New contact branch refactored, csfr checks implemented)
                         xhttp.open(method, url, false);
                         xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
                         xhttp.onreadystatechange = function(){
@@ -57,23 +50,6 @@ window.onload = function(){
     init();
 }
 
-<<<<<<< HEAD
-function loadPage(workSpace, xhttp, url, method, params, result, init){
-    workSpace = document.getElementById("gridBox");
-    workSpace.innerHTML = "";
-
-    var leftSide = document.createElement("section");
-    leftSide.setAttribute("id", "sideBar");
-    var rightSide = document.createElement("section");
-    rightSide.setAttribute("id", "loader");
-
-    workSpace.appendChild(leftSide);
-    workSpace.appendChild(rightSide);
-
-    url = "sideBar.php";
-    method = "POST";
-    params = "";
-=======
 function loadPage(workSpace, xhttp, url, method, params, result, init, role){
     document.getElementById("text-muted").style.visibility = "hidden";
     console.log(role);
@@ -86,7 +62,6 @@ function loadPage(workSpace, xhttp, url, method, params, result, init, role){
         params = "";
     }
     
->>>>>>> 9ff5eff (New contact branch refactored, csfr checks implemented)
     xhttp.open(method, url, false);
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhttp.onreadystatechange = function(){
@@ -99,27 +74,6 @@ function loadPage(workSpace, xhttp, url, method, params, result, init, role){
     var links = document.querySelectorAll("a");
     linkClicker(links, init);
 
-<<<<<<< HEAD
-    var links = document.querySelectorAll("a");
-    links.forEach((link) =>{
-        link.addEventListener('click', function(event){
-            event.preventDefault();
-            if(this.textContent == "HOme"){
-                
-            }else if(this.textContent == "NEw Contact"){
-        
-            }else if(this.textContent == "Users"){
-        
-            }else if(this.textContent == "Logout"){
-                if(confirm("Are You sure you would like to logout?")){
-                    init();
-                }else{
-        
-                }
-            }
-        });
-    });
-=======
     function linkClicker(links, init){
         console.log(links);
         for(let link of links){
@@ -268,5 +222,4 @@ function openContacts(event, url, method, params){
         }
     }
     xhttp.send('type=' + params);
->>>>>>> 9ff5eff (New contact branch refactored, csfr checks implemented)
 }
