@@ -170,7 +170,6 @@ function loadPage(workSpace, xhttp, url, method, params, result, init, role){
             document.getElementById("saveButton").addEventListener('click', function(event){
                 var reg;
                 var pass = true;
-
                 var firstName = document.querySelector("form [for='firstName'] input").value.replace(/(<([^>]+)>)/gi, "").trim();
                 var lastName = document.querySelector("form [for='lastName'] input").value.replace(/(<([^>]+)>)/gi, "").trim();
                 var company = document.querySelector("form [for='company'] input").value.replace(/(<([^>]+)>)/gi, "").trim();

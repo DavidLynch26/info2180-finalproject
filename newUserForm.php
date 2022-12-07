@@ -30,7 +30,7 @@
             <select name="titles" id="titleSelector">
                 <option value = "Mr.">Mr</option>
                 <option value = "Mrs.">Mrs</opion>
-                <option value = "Mr.">Ms</option>
+                <option value = "Ms.">Ms</option>
                 <option value = "Dr.">Dr</option>
                 <option value = "Prof.">Prof</option>
             </select>

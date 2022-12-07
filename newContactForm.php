@@ -10,11 +10,13 @@
         <h1 id="NewUserHeading">New Contact</h1>
         <hr>
 
-        <select id="titleSelector">
-            <option value="Mr."> Mr</option>
-            <option value="Ms."> Ms</option> 
-            <option value="Mrs."> Mrs</option>  
-        </select>                   
+        <select name="titles" id="titleSelector">
+            <option value = "Mr.">Mr</option>
+            <option value = "Mrs.">Mrs</opion>
+            <option value = "Ms.">Ms</option>
+            <option value = "Dr.">Dr</option>
+            <option value = "Prof.">Prof</option>
+        </select>                
 
         <label for="firstName"><b>Firstname</b>
             <input type="text" name="firstname" id="firstname">
@@ -43,7 +45,7 @@
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             foreach($results as $result):?>
-                <option value="<"></option>
+                <option value="<?= $result['id']; ?>"></option>
             <?php endforeach; ?>
         ?>
         </select>

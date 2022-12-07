@@ -9,7 +9,9 @@
             }
             if(isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['email']) && isset($_POST['company']) && isset($_POST['tel']) && isset($_POST['title']) && isset($_POST['type'])){
                 include "setConnection.php";
-                
+                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                $queryString = "";
             }
         }
     }catch(Exception $e){
