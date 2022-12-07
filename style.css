@@ -13,6 +13,16 @@ header div img{
     width: 45px;
 }
 
+th{
+    background-color: gray;
+    border-collapse: collapse;
+}
+
+#loader .tab img{
+    height: 10px;
+    width: 10px;
+}
+
 #text-muted{
     text-align: center;
 }

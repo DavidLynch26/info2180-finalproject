@@ -1,6 +1,7 @@
 <?php 
     include "sideBar.php";
     include "generateCsfr.php";
+    include "setConnection";
 ?>
 
 <section id="loader">
@@ -36,6 +37,16 @@
             <option value="Sales Lead">Sales Lead</option>
         </select>
 
+        <select name="" id="">
+        <?php 
+            $stmt = $conn->query("SELECT * FROM users");
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            foreach($results as $result):?>
+                <option value="<"></option>
+            <?php endforeach; ?>
+        ?>
+        </select>
         <button type="button" id="saveButton">Save</button>
     </form>
 </section>

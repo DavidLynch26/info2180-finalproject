@@ -15,7 +15,7 @@
     <button id = "newContactButton" type = "button">New Contact</button>
 
     <div class="tab">
-        <h3>&#xF3CA; Filter By</h3>
+        <h3><img src="filterIcon.png" alt="Black Filter Icon"> Filter By</h3>
         <button class="tablinks" onclick="openContacts(event, 'dashboard.php','POST','All Contacts')">All Contacts</button>
         <button class="tablinks" onclick="openContacts(event, 'dashboard.php','POST','Sales Lead')">Sales Lead</button>
         <button class="tablinks" onclick="openContacts(event, 'dashboard.php','POST','Support')">Support</button>

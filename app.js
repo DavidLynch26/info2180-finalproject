@@ -159,7 +159,7 @@ function loadPage(workSpace, xhttp, url, method, params, result, init, role){
                             loadPage(workSpace, xhttp, "userList.php", method, params, result, init, role);
                         }
                     }
-                    xhttp.send(params);                   
+                    xhttp.send(params);                  
                 }
             });
         });
@@ -208,7 +208,10 @@ function loadPage(workSpace, xhttp, url, method, params, result, init, role){
                     pass = false;
                 }
 
-
+                // if(pass == true){
+                //     url = "dashboard.php";
+                //     params = "firstname=" +firstName+ "&lastname=" +lastName+ "&company=" +company+ "&email=" +email+ "&tel=" +tel+ "&type=" +type+ "&title=" +title;
+                // }
             });
         });
     }

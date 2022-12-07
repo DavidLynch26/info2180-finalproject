@@ -7,7 +7,7 @@
                 $_SESSION['csfrToken'] !== $_POST['csfrToken']){
                 throw new Exception('CSRF attack');
             } 
-            if(isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['email']) && isset($_POST['password']) && isset($_POST['role']) && isset($_POST['title'])) {
+            if(isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['email']) && isset($_POST['password']) && isset($_POST['role']) && isset($_POST['title'])){
                 include "setConnection.php";
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         

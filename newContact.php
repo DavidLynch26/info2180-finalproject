@@ -1,41 +1,18 @@
-<?php 
-    include "sideBar.php";
-    include "generateCsfr.php";
+<?php
+    session_start();
+
+    try{
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if (!isset($_SESSION['csfrToken']) ||
+                $_SESSION['csfrToken'] !== $_POST['csfrToken']){
+                throw new Exception('CSRF attack');
+            }
+            if(isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['email']) && isset($_POST['company']) && isset($_POST['tel']) && isset($_POST['title']) && isset($_POST['type'])){
+                include "setConnection.php";
+                
+            }
+        }
+    }catch(Exception $e){
+        echo 'Message: ' . $e->getMessage();
+    }
 ?>
-
-<section id="loader">
-    <form action="newContact.php" method="POST">
-        <input type="hidden" id= "csrfToken" value= "<?php echo $key; ?>" >
-        <h1 id="NewUserHeading">New Contact</h1>
-        <hr>
-
-        <select id="titleSelector">
-            <option value="Mr."> Mr</option>
-            <option value="Ms."> Ms</option> 
-            <option value="Mrs."> Mrs</option>  
-        </select>                   
-
-        <label for="firstName"><b>Firstname</b>
-            <input type="text" name="firstname" id="firstname">
-        </label>
-        <label for="lastName"><b>Lastname</b>
-            <input type="text" name="lastname" id="lastname">
-        </label>
-        <label for="email"><b>Email</b>
-            <input type="text" name="email" id="email">
-        </label>
-        <label for="tel"><b>Telephone</b>
-            <input type="text" name="telephone" id="telephone">
-        </label>
-        <label for="company"><b>Company</b>
-            <input type="text" name="company" id="company">
-        </label>
-
-        <select id="typeSelector">
-            <option value="Support">Support</option>
-            <option value="Sales Lead">Sales Lead</option>
-        </select>
-
-        <button type="button" id="saveButton">Save</button>
-    </form>
-</section>
