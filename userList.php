@@ -1,8 +1,10 @@
 <?php include "sideBar.php"; ?>
 
+
 <h1>Users</h1>
-<button id = "newUserButton" type = "button">&#43; Add User</button>
-<table>
+<button id = "newUserButton" type = "button">+ Add User</button>
+
+<table id= "tableUser">
       <tr>
         <th>Name</th>
         <th>Email</th>
@@ -17,6 +19,7 @@
  
 ?>
   <?php foreach($results as $row): ?>
+
       <tr>
         <td></td>
         <?php $name = $row["title"] . " ".$row["firstname"] ." ". $row["lastname"]?>
@@ -27,3 +30,4 @@
       </tr>
   <?php endforeach ?>
 </table>
+  </container>
