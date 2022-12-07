@@ -122,3 +122,24 @@ body{
 
     transition: 0.2s;
 }
+
+#gridbox {
+    display: grid;
+    grid-template-columns: 15%, 85%;
+}
+
+#sidebar {
+    display: flex;
+    padding-left: 10%;
+    grid-column: 1;
+    flex-direction: column;
+}
+
+#loader {
+    grid-column: 2;
+    background-color: lightgray;
+}
+
+#sidebar a {
+    text-decoration: none;
+}
