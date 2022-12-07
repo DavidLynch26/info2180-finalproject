@@ -1,7 +1,7 @@
 <?php 
     include "sideBar.php";
     include "generateCsfr.php";
-    include "setConnection";
+    include "setConnection.php";
 ?>
 
 <section id="loader">
