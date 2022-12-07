@@ -2,7 +2,7 @@
     session_start();
 
     try{
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             if (!isset($_SESSION['csfrToken']) ||
                 $_SESSION['csfrToken'] !== $_POST['csfrToken']){
                 throw new Exception('CSRF attack');
