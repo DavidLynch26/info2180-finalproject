@@ -1,5 +1,5 @@
 <?php
-    if(isset($_POST['type'])):
+    if(isset($_POST['type']) && isset($_POST['choice'])):
         include "setConnection.php";
         include "sideBar.php";
 
@@ -16,10 +16,10 @@
 
     <div class="tab">
         <h3><img src="filterIcon.png" alt="Black Filter Icon"> Filter By</h3>
-        <button class="tablinks" onclick="openContacts(event, 'dashboard.php','POST','All Contacts')">All Contacts</button>
-        <button class="tablinks" onclick="openContacts(event, 'dashboard.php','POST','Sales Lead')">Sales Lead</button>
-        <button class="tablinks" onclick="openContacts(event, 'dashboard.php','POST','Support')">Support</button>
-        <button class="tablinks" onclick="openContacts(event, 'dashboard.php','POST','Assigned to me')">Assigned to me</button>
+        <button class="tablinks">All Contacts</button>
+        <button class="tablinks">Sales Lead</button>
+        <button class="tablinks">Support</button>
+        <button class="tablinks">Assigned to me</button>
     </div>
 
     <table>
