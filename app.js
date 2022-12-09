@@ -55,7 +55,8 @@ window.onload = function(){
 
 function loadPage(workSpace, xhttp, url, method, params, result, init, role){
     if(url == "dashboard.php"){
-        params = "type=All Contacts";
+        params = "type=All Contacts&choice=1";
+        console.log(params);
     }
     
     xhttp.open(method, url, false);
@@ -68,7 +69,7 @@ function loadPage(workSpace, xhttp, url, method, params, result, init, role){
             var links = document.querySelectorAll("a");
             linkClicker(links, init, role);
             if(url == "dashboard.php"){
-                openContacts(event, xhttp, url, method, params);
+                openContacts(event, xhttp, "dashboardData.php", method, params);
                 document.getElementById("newContactButton").addEventListener('click', function(event){
                     loadPage(workSpace, xhttp, "newContactForm.php", method, params, result, init, role);
                 });
@@ -189,6 +190,7 @@ function loadPage(workSpace, xhttp, url, method, params, result, init, role){
     }
 
     function linkClicker(links, init, role){
+        console.log(links);
         for(let link of links){
             link.addEventListener('click', function(event){
                 event.preventDefault();
@@ -197,6 +199,7 @@ function loadPage(workSpace, xhttp, url, method, params, result, init, role){
                         url = "userList.php";
                     }else if(role == 0){
                         url = "dashboard.php";
+                        params = "type=All Contacts"
                     }
                     loadPage(workSpace, xhttp, url, method, params, result, init, role);
                 }else if(link.textContent == "New Contact"){
@@ -215,18 +218,16 @@ function loadPage(workSpace, xhttp, url, method, params, result, init, role){
     function openContacts(event, xhttp, url, method, params){
         var buttons = document.getElementsByClassName("tablinks");
         var choice;
-        console.log("asd");
         for(let button of buttons){
-            console.log("asd");
             button.addEventListener('click', function(){
                 if(button.textContent == "All Contacts"){
                     choice = 1;
                 }else if(button.textContent == "Sales Lead" || button.textContent == "Support"){
-                    params = "type=" +button.textContent;
                     choice = 2;
                 }else if(button.textContent == "Assigned to me"){
                     choice = 3;
                 }
+                params = "type=" +button.textContent+ "&choice=" +choice;
             });
         }
         xhttp.open(method, url, false);
@@ -234,9 +235,20 @@ function loadPage(workSpace, xhttp, url, method, params, result, init, role){
         xhttp.onreadystatechange = function(){
             if(this.readyState == 4 && this.status == 200){
                 result = this.responseText;
-                workSpace.innerHTML = result;
+                document.getElementById("loader").innerHTML += result;
+
+                var views = document.querySelectorAll("#loader a");
+                for(let view of views){
+                    if(view.textContent == "View"){
+                        view.addEventListener('click', function(event){
+                            event.preventDefault();
+                            loadPage(workSpace, xhttp, "viewFullContact.php", method, "id="+view.getAttribute('value'), result, init, role);
+                            console.log(this.responseText, params);
+                        });
+                    }
+                }
             }
         }
-        xhttp.send('type=' +params+ "&choice=" +choice);
+        xhttp.send(params);
     }
 }

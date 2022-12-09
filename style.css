@@ -67,7 +67,6 @@ body{
     align-items: center;
 }
 
-
 #newUserButton{
     background-color: blueviolet;
     float: right;
@@ -89,7 +88,6 @@ body{
     color: white;
  
 }
-
 
 #tableUser {
     border-radius: 5px;
