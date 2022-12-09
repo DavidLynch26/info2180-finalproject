@@ -1,15 +1,27 @@
 <?php
-    if(isset($_POST['type']) && isset($_POST['choice'])):
+    if(isset($_POST['type'])):
         include "setConnection.php";
         include "sideBar.php";
 
+        if(!empty($_POST['choice'])){
+            $choice = 1;
+        }else{
+            $choice = filter_input(INPUT_POST, 'choice', FILTER_SANITIZE_STRING);
+        }
+
         $type = filter_input(INPUT_POST, 'type', FILTER_SANITIZE_STRING);
-        $queryString = "SELECT * FROM contacts WHERE type LIKE '%$type%'";
+        if($choice == 2){
+            $queryString = "SELECT * FROM contacts WHERE type LIKE '%$type%'";
+        }else if($choice == 1){
+            $queryString = "SELECT * FROM contacts";
+        }else if($choice == 3){
+            $id = $_SERVER['id'];
+            $queryString = "SELECT * FROM contacts WHERE assigned_to = '$id'";
+        }
 
         $grab = $conn->query($queryString);
         $dash = $grab->fetchAll(PDO::FETCH_ASSOC);
-
-    ?>
+?>
 <section id = "loader">
     <h1 id = "dashboard">Dashboard</h1>
     <button id = "newContactButton" type = "button">New Contact</button>
@@ -42,4 +54,4 @@
         <?php endforeach ?>
     </table>
 </section>
-<?php endif ?>
+    <?php endif ?>

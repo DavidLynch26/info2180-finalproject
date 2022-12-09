@@ -68,6 +68,7 @@ function loadPage(workSpace, xhttp, url, method, params, result, init, role){
             var links = document.querySelectorAll("a");
             linkClicker(links, init, role);
             if(url == "dashboard.php"){
+                openContacts(event, xhttp, url, method, params);
                 document.getElementById("newContactButton").addEventListener('click', function(event){
                     loadPage(workSpace, xhttp, "newContactForm.php", method, params, result, init, role);
                 });
@@ -214,17 +215,20 @@ function loadPage(workSpace, xhttp, url, method, params, result, init, role){
     function openContacts(event, xhttp, url, method, params){
         var buttons = document.getElementsByClassName("tablinks");
         var choice;
+        console.log("asd");
         for(let button of buttons){
-            if(button.textContent == "All Contacts"){
-                choice = 1;
-            }else if(button.textContent == "Sales Lead" || button.textContent == "Support"){
-                params = "type=" +button.textContent;
-                choice = 2;
-            }else if(button.textContent == "Assigned to me"){
-                choice = 3;
-            }
+            console.log("asd");
+            button.addEventListener('click', function(){
+                if(button.textContent == "All Contacts"){
+                    choice = 1;
+                }else if(button.textContent == "Sales Lead" || button.textContent == "Support"){
+                    params = "type=" +button.textContent;
+                    choice = 2;
+                }else if(button.textContent == "Assigned to me"){
+                    choice = 3;
+                }
+            });
         }
-
         xhttp.open(method, url, false);
         xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         xhttp.onreadystatechange = function(){
