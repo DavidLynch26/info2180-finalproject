@@ -2,11 +2,11 @@
     session_start();
 
     try{
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
             if (!isset($_SESSION['csfrToken']) ||
                 $_SESSION['csfrToken'] !== $_POST['csfrToken']){
                 throw new Exception('CSRF attack');
-            } 
+            }
             if(isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['email']) && isset($_POST['password']) && isset($_POST['role']) && isset($_POST['title'])){
                 include "setConnection.php";
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -24,7 +24,7 @@
                 $password = password_hash(filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING), PASSWORD_DEFAULT);
                 $role = filter_input(INPUT_POST, 'role', FILTER_SANITIZE_STRING);
                 $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_STRING);
-        
+
                 $queryString = "INSERT INTO users (title, firstname, lastname, password, email, role, created_at) 
                     VALUES (?, ?, ?, ?, ?, ?, NOW())";
                 $stmt = $conn->prepare($queryString);

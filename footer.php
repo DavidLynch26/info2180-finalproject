@@ -1,4 +1,4 @@
-<footer>
+<footer id ="text-muted">
 <hr>
-<p id ="text-muted">Copyright &copy; <?= date('Y'); ?> Dolphin CRM</p>
+<p>Copyright &copy; <?= date('Y'); ?> Dolphin CRM</p>
 </footer> 

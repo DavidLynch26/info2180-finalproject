@@ -50,7 +50,6 @@ CREATE TABLE contacts (
     lastname varchar(20) NOT NULL,
     email varchar(35) NOT NULL,
     telephone varchar(15) NOT NULL,
-    role varchar(10) NOT NULL,
     company varchar(35) NOT NULL,
     type varchar(10) NOT NULL,
     assigned_to int(11) NOT NULL,

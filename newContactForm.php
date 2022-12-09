@@ -1,4 +1,5 @@
-<?php 
+<?php
+    session_start();
     include "sideBar.php";
     include "generateCsfr.php";
     include "setConnection.php";
@@ -9,11 +10,13 @@
         <h1 id="NewUserHeading">New Contact</h1>
         <hr>
 
-        <select id="titleSelector">
-            <option value="Mr."> Mr</option>
-            <option value="Ms."> Ms</option> 
-            <option value="Mrs."> Mrs</option>  
-        </select>   
+        <select name="titles" id="titleSelector">
+            <option value = "Mr.">Mr</option>
+            <option value = "Mrs.">Mrs</opion>
+            <option value = "Ms.">Ms</option>
+            <option value = "Dr.">Dr</option>
+            <option value = "Prof.">Prof</option>
+        </select>                
 
         <label for="firstName"><b>First Name</b>
             <input type="text" name="firstname" id="firstname">
@@ -39,13 +42,13 @@
             <option value="Sales Lead">Sales Lead</option>
         </select><br><br>
 
-        <select name="" id="">
+        <select id="assignedSelector">
         <?php 
             $stmt = $conn->query("SELECT * FROM users");
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             foreach($results as $result):?>
-                <option value="<"></option>
+                <option value="<?= $result['id']; ?>"><?= $result['title']." ".$result['firstname']." ".$result['lastname']; ?></option>
             <?php endforeach; ?>
         ?>
         </select>
