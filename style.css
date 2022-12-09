@@ -204,3 +204,33 @@ body{
     border-radius: 10px;
 
 }
+
+#gridbox {
+    display: grid;
+    grid-template-columns: 15%, 85%;
+}
+
+#sidebar {
+   padding-right: 25px;
+   grid-column: 1;
+}
+
+#loader {
+    grid-column: 2;
+    background-color: lightgray;
+}
+
+#sidebar a {
+    text-decoration: none;
+}
+
+#sidebar img {
+    width: 20px;
+    height: 20px;
+    padding-left: 0px;
+    padding-right: 10px;
+}
+
+#sidebar ul {
+    list-style: none;
+}
