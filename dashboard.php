@@ -3,23 +3,35 @@
         include "setConnection.php";
         include "sideBar.php";
 
+        if(!empty($_POST['choice'])){
+            $choice = 1;
+        }else{
+            $choice = filter_input(INPUT_POST, 'choice', FILTER_SANITIZE_STRING);
+        }
+
         $type = filter_input(INPUT_POST, 'type', FILTER_SANITIZE_STRING);
-        $queryString = "SELECT * FROM contacts WHERE type LIKE '%$type%'";
+        if($choice == 2){
+            $queryString = "SELECT * FROM contacts WHERE type LIKE '%$type%'";
+        }else if($choice == 1){
+            $queryString = "SELECT * FROM contacts";
+        }else if($choice == 3){
+            $id = $_SERVER['id'];
+            $queryString = "SELECT * FROM contacts WHERE assigned_to = '$id'";
+        }
 
         $grab = $conn->query($queryString);
         $dash = $grab->fetchAll(PDO::FETCH_ASSOC);
-
-    ?>
+?>
 <section id = "loader">
     <h1 id = "dashboard">Dashboard</h1>
     <button id = "newContactButton" type = "button">New Contact</button>
 
     <div class="tab">
         <h3><img src="filterIcon.png" alt="Black Filter Icon"> Filter By</h3>
-        <button class="tablinks" onclick="openContacts(event, 'dashboard.php','POST','All Contacts')">All Contacts</button>
-        <button class="tablinks" onclick="openContacts(event, 'dashboard.php','POST','Sales Lead')">Sales Lead</button>
-        <button class="tablinks" onclick="openContacts(event, 'dashboard.php','POST','Support')">Support</button>
-        <button class="tablinks" onclick="openContacts(event, 'dashboard.php','POST','Assigned to me')">Assigned to me</button>
+        <button class="tablinks">All Contacts</button>
+        <button class="tablinks">Sales Lead</button>
+        <button class="tablinks">Support</button>
+        <button class="tablinks">Assigned to me</button>
     </div>
 
     <table>
@@ -42,4 +54,4 @@
         <?php endforeach ?>
     </table>
 </section>
-<?php endif ?>
+    <?php endif ?>

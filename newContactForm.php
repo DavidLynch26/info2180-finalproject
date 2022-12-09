@@ -1,4 +1,5 @@
-<?php 
+<?php
+    session_start();
     include "sideBar.php";
     include "generateCsfr.php";
     include "setConnection.php";
@@ -39,13 +40,13 @@
             <option value="Sales Lead">Sales Lead</option>
         </select>
 
-        <select name="" id="">
+        <select id="assignedSelector">
         <?php 
             $stmt = $conn->query("SELECT * FROM users");
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             foreach($results as $result):?>
-                <option value="<?= $result['id']; ?>"></option>
+                <option value="<?= $result['id']; ?>"><?= $result['title']." ".$result['firstname']." ".$result['lastname']; ?></option>
             <?php endforeach; ?>
         ?>
         </select>
