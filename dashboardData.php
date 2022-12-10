@@ -33,7 +33,7 @@
 
     <?php foreach ($dash as $row):?>
     <tr>
-        <?php $name = $row['title'].$row['firstname'].$row['lastname']?>
+        <?php $name = $row['title']." ".$row['firstname'].$row['lastname']?>
         
         <td><?= $name;?></td>
         <td><?= $row['email']; ?></td>

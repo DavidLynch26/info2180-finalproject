@@ -1,8 +1,10 @@
 <?php include "sideBar.php"; ?>
 
 <section id = "loader">
-  <h1>Users</h1>
-  <button id = "newUserButton" type = "button">&#43; Add User</button>
+  <div id = "userDiv">
+    <h1>Users</h1>
+    <button id = "newUserButton" type = "button">&#43; Add User</button>
+  </div>
   
   <table id="tableUser">
         <tr>

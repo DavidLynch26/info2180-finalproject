@@ -1,5 +1,6 @@
 <?php
     include "sidebar.php";
+    session_start();
 
     if (isset($_POST['id'])):
         include "setConnection.php";
@@ -7,27 +8,32 @@
         $queryString = "SELECT * FROM contacts WHERE id = '$id'";
         $grab = $conn->query($queryString);
         $dash = $grab->fetch(PDO::FETCH_ASSOC);
+
+        $createdById = $dash['created_by'];
+        $queryString = "SELECT firstname, lastname FROM users WHERE id = '$createdById'";
+        $createdById = $conn->query($queryString);
+        $creator = $createdById->fetch(PDO::FETCH_ASSOC);
 ?>
 <section id = "loader">
-    <h2><?php $name = $dash['title'] . $dash['firstname'] . $dash['lastname'];?></h2>
-    <table>
+    <div id = "fullContactHolder">
+        <h2><img src="newContactIcon.png" alt="Contact Icon"> <?= $name = $dash['title']." ". $dash['firstname'].$dash['lastname']; ?></h2>
+        <p>Created on ; by <?= $creator['firstname']." ".$creator['lastname']?>; </p>
+        <p>Updated on ; </p>
+    </div>    
+   
+    <table id = "contactDetails">
         <tr>
-            <th>Email</th>
-            <th>Telephone</th>
-            <th>Company</th>
-            <th>Type</th>
+            <th>Email <br> <?= $dash['email']; ?></th>
+            <th>Telephone <br> <?= $dash['telephone']; ?></th>
         </tr>
         <tr>
-            <td><?= $dash['email']; ?></td>
-            <td><?= $dash['telephone']; ?></td>
-            <td><?= $dash['company']; ?></td>
-            <td><?= $dash['type']; ?><a href= ''>View</a></td>
+            <th>Company <br> <?= $dash['company']; ?> </th>
+            <th>Type <br> <?= $dash['type']; ?></th>
         </tr>
     </table>
 
-
     <?php
-    include "addNote.php";
+        include "addNote.php";
     endif; 
     ?>
 </section>

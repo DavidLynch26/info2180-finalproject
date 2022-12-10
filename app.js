@@ -58,6 +58,7 @@ function loadPage(workSpace, xhttp, url, method, params, result, init, role){
         params = "type=All Contacts&choice=1";
         console.log(params);
     }
+    console.log(window.getComputedStyle(workSpace).getPropertyValue('grid-template-column'));
     
     xhttp.open(method, url, false);
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
@@ -159,7 +160,7 @@ function loadPage(workSpace, xhttp, url, method, params, result, init, role){
                 pass = false;
             }
 
-            reg = /^((\(\d{3}\)))[ ]\d{3}[-]\d{4}$/;
+            reg = /^\d{3}[-]\d{3}[-]\d{4}$/;
             if(!tel.match(reg)){
                 console.log("g");
                 pass = false;
